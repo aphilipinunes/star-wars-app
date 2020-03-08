@@ -1,0 +1,19 @@
+@import "src/sass/abstracts/mixins";
+@import "src/sass/abstracts/variables";
+@import "src/sass/components/mat-paginator";
+@import "src/sass/components/mat-table";
+
+.mat-table-link {
+  &:hover {
+    .mat-table-link__icon {
+      color: $yellow;
+    }
+  }
+
+  &__icon {
+    @include transition(0.3s);
+    height: 28px !important;
+    width: 28px !important;
+    font-size: 28px !important;
+  }
+}

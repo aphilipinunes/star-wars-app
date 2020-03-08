@@ -1,0 +1,12 @@
+@import "src/sass/abstracts/variables";
+@import "src/sass/abstracts/mixins";
+
+.detail-caracters {
+  &__title {
+    font-size: 26px;
+    line-height: 40px;
+    color: $yellow;
+    @include transform-origin(50% 100%);
+    @include transform(perspective(300px) rotateX(42deg));
+  }
+}

@@ -1,0 +1,22 @@
+@import "src/sass/abstracts/mixins";
+@import "src/sass/abstracts/variables";
+
+.movies-list {
+  &__content {
+    padding: 0 30px 30px 30px;
+    @include transition(0.3s);
+    &:hover {
+      @include scale(1.1);
+    }
+  }
+
+  &__span {
+    text-align: center;
+    font-size: 11px;
+    display: block;
+  }
+  &__img {
+    width: 130px;
+    margin-bottom: 5px;
+  }
+}

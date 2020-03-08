@@ -1,0 +1,17 @@
+
+::ng-deep .mat-paginator {
+  background: inherit !important;
+}
+
+
+::ng-deep .mat-icon-button{
+  background: $dark-red !important;
+  border-radius: 0px !important;
+  margin-left: 3px !important;
+  color:$yellow;
+}
+
+::ng-deep .mat-icon-button[disabled][disabled]{
+  color: transparentize($yellow, .3) !important;
+  background: transparentize($dark-red, .3) !important;
+}

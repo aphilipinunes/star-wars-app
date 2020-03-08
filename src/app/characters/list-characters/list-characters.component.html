@@ -1,0 +1,140 @@
+<app-title [titlePage]="titlePage"></app-title>
+
+<section
+  class="container container-star-wars"
+  *ngIf="loadPageCharacters"
+  [@fadeIn]
+>
+  <div class="row">
+    <form
+      class="col-6"
+      [formGroup]="charactersForm"
+      (ngSubmit)="searchFilterCaracters()"
+    >
+      <mat-form-field>
+        <input
+          class="form-control"
+          formControlName="inputCaracterName"
+          matInput
+          placeholder="Pesquisar por nome"
+          autocomplete="off"
+          #tooltipCharacters="matTooltip"
+          (click)="tooltipCharacters.toggle()"
+          (mouseenter)="$event.stopImmediatePropagation()"
+          (mouseleave)="$event.stopImmediatePropagation()"
+          matTooltip="Pesquisa pelo nome dos personagens de qualquer filme da série Star Wars"
+          matTooltipPosition="right"
+        />
+        <mat-error>
+          Por favor digite mais de 2 letras para buscar
+        </mat-error>
+      </mat-form-field>
+    </form>
+
+    <div class="col-6 text-right">
+      <mat-form-field>
+        <input
+          matInput
+          (keydown.enter)="applyFilter($event.target.value)"
+          placeholder="Filtro avançado"
+          class="form-control"
+          autocomplete="off"
+          #tooltipFilter="matTooltip"
+          (click)="tooltipFilter.toggle()"
+          (mouseenter)="$event.stopImmediatePropagation()"
+          (mouseleave)="$event.stopImmediatePropagation()"
+          matTooltip="Filtro avançado da página, cor do cabelo, olhos e etc"
+          matTooltipPosition="right"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <mat-table #table [dataSource]="data">
+    <!-- Position Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef>
+        Nome
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element; let i = index">
+        <!-- {{ i + 1 + paginator.pageIndex * paginator.pageSize }} - -->
+        {{ element.name }}
+      </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="height">
+      <mat-header-cell *matHeaderCellDef> Altura </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.height }} </mat-cell>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="mass">
+      <mat-header-cell *matHeaderCellDef> Peso </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.mass }} </mat-cell>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="hair_color">
+      <mat-header-cell *matHeaderCellDef> Cor do cabelo </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{ element.hair_color }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="skin_color">
+      <mat-header-cell *matHeaderCellDef> Cor da pele </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{ element.skin_color }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="eye_color">
+      <mat-header-cell *matHeaderCellDef> Cor dos olhos </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.eye_color }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="birth_year">
+      <mat-header-cell *matHeaderCellDef> Ano nascimento </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{ element.birth_year }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="gender">
+      <mat-header-cell *matHeaderCellDef> Sexo </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.gender }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="details">
+      <mat-header-cell *matHeaderCellDef> Detalhes </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <a (click)="detailsPage(element)">Detalhes</a>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row
+      *matRowDef="let row; columns: displayedColumns"
+      [ngClass]="{ gray: even }"
+    ></mat-row>
+  </mat-table>
+</section>
+
+<div class="container" [hidden]="!loadPageCharacters">
+  <div class="row">
+    <div class="col-12">
+      <mat-paginator
+        #paginator
+        [showFirstLastButtons]="true"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="pageIndex"
+        (page)="pageEvent = searchFilterCaracters($event)"
+        [length]="totalCharacters"
+      >
+      </mat-paginator>
+    </div>
+  </div>
+</div>
+
+<app-loading [loadComplete]="!loadComplete"></app-loading>

@@ -10,13 +10,14 @@
       "prefix": "app",
       "schematics": {
         "@schematics/angular:component": {
-          "styleext": "scss"
+          "style": "scss"
         }
       },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "dist/star-wars-app",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -27,7 +28,10 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
+            "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/sass/styles.scss"
+
             ],
             "scripts": []
           },
@@ -53,6 +57,10 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "all",
+                  "maximumWarning": "6kb"
                 }
               ]
             }
@@ -83,7 +91,10 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "src/styles.scss"
+              "node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/sass/styles.scss"
+
             ],
             "scripts": [],
             "assets": [
@@ -135,5 +146,8 @@
       }
     }
   },
-  "defaultProject": "star-wars-app"
+  "defaultProject": "star-wars-app",
+  "cli": {
+    "analytics": "1af15d53-37f9-4274-9da5-4932d79607e8"
+  }
 }

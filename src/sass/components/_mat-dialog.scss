@@ -1,0 +1,14 @@
+::ng-deep {
+  // mat-label
+  .mat-dialog-container {
+    background: lighten($black, 10);
+    color: $white !important;
+  }
+
+  .mat-flat-button.mat-primary,
+  .mat-raised-button.mat-primary,
+  .mat-fab.mat-primary,
+  .mat-mini-fab.mat-primary {
+    background-color: $yellow !important;
+  }
+}
