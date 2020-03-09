@@ -1,8 +1,13 @@
 @import "src/sass/abstracts/mixins";
 @import "src/sass/abstracts/variables";
 
+
 .movies-list {
+  &__title{
+    margin-bottom: 15px;
+  }
   &__content {
+    display: inline-block;
     padding: 0 30px 30px 30px;
     @include transition(0.3s);
     &:hover {

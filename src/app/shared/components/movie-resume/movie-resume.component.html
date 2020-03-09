@@ -1,23 +1,21 @@
-<section class="container movie-resume" *ngIf="!showMovieResume" [@fadeIn]>
-  <div class="row">
-    <article class="col-12 col-sm-12 col-md-6 col-lg-4">
-      <img src="{{ movieObjectList.image }}" class="img-fluid" alt='Star Wars movie' />
-    </article>
-    <article class="col-12 col-sm-12 col-md-6 col-lg-8">
+<section class="movie-resume container-star-wars" *ngIf="!showMovieResume" [@fadeIn]>
+    <article>
+      <img src="{{ movieObjectList.image }}" class="movie-resume__img" alt='Star Wars movie' />
+
       <h2>{{ movieObjectList.title }}</h2>
       <p>{{ movieObjectList.sinopse }}</p>
-      <p class="font-weight-bold">Producer: {{ movieObjectList.producer }}</p>
-      <p class="font-weight-bold">Director: {{ movieObjectList.director }}</p>
-      <div class="row">
-        <div class="col-6">
-          <a (click)="charactersPage()" class="a-link" title="Personagens"
-          matTooltip="Página de busca dos personagens da série Star Wars"
-          matTooltipPosition="right"><mat-icon mat-list-icon class="a-link__icon">search</mat-icon> Personagens</a>
+
+      <p class="font-bold">Producer: {{ movieObjectList.producer }}</p>
+      <p class="font-bold">Director: {{ movieObjectList.director }}</p>
+
+      <div>
+        <div class="float-left">
+          <a (click)="charactersPage()" class="a-link" title="Personagens">Personagens</a>
         </div>
-        <div class="col-6 text-right">
-          <a (click)="back()" class="a-link" title="Fechar"><mat-icon mat-list-icon class="a-link__icon">close</mat-icon> Fechar</a>
+        <div class="float-right">
+          <a (click)="back()" class="a-link" title="Fechar">Fechar</a>
         </div>
       </div>
     </article>
-  </div>
+
 </section>

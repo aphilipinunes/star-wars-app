@@ -10,9 +10,17 @@ body {
 
 html {
   overflow: hidden;
+  color: $white;
 }
 
-.form-control {
+.font-bold {
+  font-weight: bold;
+}
+
+input {
+  padding: 8px;
+  border: solid 1px $red;
+  @include transition(.3s);
   &:focus {
     background: inherit;
     outline: 0;
@@ -20,7 +28,12 @@ html {
     outline: 0;
     box-shadow: inherit;
     color: $white;
+    border: solid 1px $yellow;
   }
+}
+
+.text-center {
+  text-align: center;
 }
 
 button {
@@ -44,14 +57,18 @@ body {
     @include transform(perspective(300px) rotateX(42deg));
     font-size: 35px;
     font-weight: bold;
+    width: 90%;
+    margin: 30px auto 0 auto;
   }
 }
-
-
 
 a {
   color: $white;
   cursor: pointer;
+  &.disabled {
+    pointer-events: none;
+    cursor: default;
+  }
 
   &.a-link {
     color: darken($yellow, 5);
@@ -74,16 +91,17 @@ p {
   line-height: 21px;
 }
 
-.mat-drawer-inner-container {
-  background-color: $yellow;
+.container-star-wars {
+  width: 90%;
+  margin: auto;
 }
 
-.mat-drawer-container {
-  background-color: inherit;
+.float-left {
+  float: left;
 }
 
-.mat-drawer-content {
-  overflow: inherit;
+.float-right {
+  float: right;
 }
 
 *::-webkit-scrollbar-track {

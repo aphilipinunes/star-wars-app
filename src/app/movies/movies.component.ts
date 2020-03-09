@@ -1,19 +1,15 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CharactersService } from '../shared';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-movies',
+  templateUrl: './movies.component.html',
+  styleUrls: ['./movies.component.scss']
 })
-export class HomeComponent {
+export class MoviesComponent {
 
 
-  constructor(
-    private charactersService: CharactersService
-  ) {
-
-  }
+  constructor() { }
 
   titlePage = 'Filmes';
   moviesList = true;

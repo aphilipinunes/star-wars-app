@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { fadeIn } from './shared';
-import { MatSidenav } from '@angular/material/sidenav';
+
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,7 @@ import { MatSidenav } from '@angular/material/sidenav';
     fadeIn
   ]
 })
+
 export class AppComponent {
   title = 'star-wars-app';
-
 }

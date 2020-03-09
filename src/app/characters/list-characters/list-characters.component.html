@@ -1,140 +1,109 @@
 <app-title [titlePage]="titlePage"></app-title>
 
-<section
-  class="container container-star-wars"
-  *ngIf="loadPageCharacters"
-  [@fadeIn]
->
-  <div class="row">
-    <form
-      class="col-6"
+<section class="container-star-wars" *ngIf="loadPageCharacters" [@fadeIn]>
+  <div class="container-inputs">
+    <form class="container-inputs__form"
       [formGroup]="charactersForm"
       (ngSubmit)="searchFilterCaracters()"
     >
-      <mat-form-field>
-        <input
-          class="form-control"
-          formControlName="inputCaracterName"
-          matInput
-          placeholder="Pesquisar por nome"
-          autocomplete="off"
-          #tooltipCharacters="matTooltip"
-          (click)="tooltipCharacters.toggle()"
-          (mouseenter)="$event.stopImmediatePropagation()"
-          (mouseleave)="$event.stopImmediatePropagation()"
-          matTooltip="Pesquisa pelo nome dos personagens de qualquer filme da série Star Wars"
-          matTooltipPosition="right"
-        />
-        <mat-error>
-          Por favor digite mais de 2 letras para buscar
-        </mat-error>
-      </mat-form-field>
+
+      <input
+        formControlName="inputCaracterName"
+        matInput
+        placeholder="Pesquisar por nome"
+        autocomplete="off"
+
+      />
     </form>
 
-    <div class="col-6 text-right">
-      <mat-form-field>
-        <input
-          matInput
-          (keydown.enter)="applyFilter($event.target.value)"
-          placeholder="Filtro avançado"
-          class="form-control"
-          autocomplete="off"
-          #tooltipFilter="matTooltip"
-          (click)="tooltipFilter.toggle()"
-          (mouseenter)="$event.stopImmediatePropagation()"
-          (mouseleave)="$event.stopImmediatePropagation()"
-          matTooltip="Filtro avançado da página, cor do cabelo, olhos e etc"
-          matTooltipPosition="right"
-        />
-      </mat-form-field>
+    <div class="text-right container-inputs__input">
+      <input
+        matInput
+        placeholder="Filtro avançado (cabelos, olhos, nascimento e etc)"
+        [(ngModel)]="filtersAdvanced"
+        autocomplete="off"
+        class=""
+      />
     </div>
   </div>
 
-  <mat-table #table [dataSource]="data">
-    <!-- Position Column -->
-    <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef>
+  <table #table>
+    <tr>
+      <th>
         Nome
-      </mat-header-cell>
-      <mat-cell *matCellDef="let element; let i = index">
-        <!-- {{ i + 1 + paginator.pageIndex * paginator.pageSize }} - -->
+      </th>
+      <th>
+        Altura
+      </th>
+      <th>
+        Peso
+      </th>
+      <th>
+        Cor do cabelo
+      </th>
+      <th>
+        Cor da pele
+      </th>
+      <th>
+        Cor dos olhos
+      </th>
+      <th>
+        Ano nascimento
+      </th>
+
+      <th>
+        Sexo
+      </th>
+
+      <th>
+        Detalhes
+      </th>
+    </tr>
+
+    <tr *ngFor="let element of data | filter:filtersAdvanced:['name', 'height', 'mass', 'hair_color', 'skin_color', 'eye_color', 'birth_year', 'gender']; let i = index">
+      <td>
         {{ element.name }}
-      </mat-cell>
-    </ng-container>
-
-    <!-- Name Column -->
-    <ng-container matColumnDef="height">
-      <mat-header-cell *matHeaderCellDef> Altura </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{ element.height }} </mat-cell>
-    </ng-container>
-
-    <!-- Weight Column -->
-    <ng-container matColumnDef="mass">
-      <mat-header-cell *matHeaderCellDef> Peso </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{ element.mass }} </mat-cell>
-    </ng-container>
-
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="hair_color">
-      <mat-header-cell *matHeaderCellDef> Cor do cabelo </mat-header-cell>
-      <mat-cell *matCellDef="let element">
+      </td>
+      <td>
+        {{ element.height }}
+      </td>
+      <td>
+        {{ element.mass }}
+      </td>
+      <td>
         {{ element.hair_color }}
-      </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="skin_color">
-      <mat-header-cell *matHeaderCellDef> Cor da pele </mat-header-cell>
-      <mat-cell *matCellDef="let element">
+      </td>
+      <td>
         {{ element.skin_color }}
-      </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="eye_color">
-      <mat-header-cell *matHeaderCellDef> Cor dos olhos </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{ element.eye_color }} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="birth_year">
-      <mat-header-cell *matHeaderCellDef> Ano nascimento </mat-header-cell>
-      <mat-cell *matCellDef="let element">
+      </td>
+      <td>
+        {{ element.eye_color }}
+      </td>
+      <td>
         {{ element.birth_year }}
-      </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="gender">
-      <mat-header-cell *matHeaderCellDef> Sexo </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{ element.gender }} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="details">
-      <mat-header-cell *matHeaderCellDef> Detalhes </mat-header-cell>
-      <mat-cell *matCellDef="let element">
+      </td>
+      <td>
+        {{ element.gender }}
+      </td>
+      <td>
         <a (click)="detailsPage(element)">Detalhes</a>
-      </mat-cell>
-    </ng-container>
-
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row
-      *matRowDef="let row; columns: displayedColumns"
-      [ngClass]="{ gray: even }"
-    ></mat-row>
-  </mat-table>
+      </td>
+    </tr>
+  </table>
 </section>
 
-<div class="container" [hidden]="!loadPageCharacters">
-  <div class="row">
-    <div class="col-12">
-      <mat-paginator
-        #paginator
-        [showFirstLastButtons]="true"
-        [pageSize]="pageSize"
-        [pageSizeOptions]="pageIndex"
-        (page)="pageEvent = searchFilterCaracters($event)"
-        [length]="totalCharacters"
+<div class="container-star-wars" *ngIf="loadPageCharacters">
+  <div class="text-center">
+    <ng-template ngFor let-item [ngForOf]="pagination" let-i="index">
+      <a class="pagination" (click)="searchFilterCaracters(pagination[i])" [class.active]="atualPage == pagination[i]" [class.disabled]='atualPage == pagination[i]'>
+        {{ pagination[i] }}</a
       >
-      </mat-paginator>
-    </div>
+    </ng-template>
   </div>
 </div>
 
 <app-loading [loadComplete]="!loadComplete"></app-loading>
+
+
+<app-modal [titleModal]='titleModal' [messageModal]='messageModal' [openModal]='openModal'></app-modal>
+

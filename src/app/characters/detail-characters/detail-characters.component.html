@@ -1,57 +1,53 @@
 <app-title [titlePage]="titlePage"></app-title>
 
-<div class="container" *ngIf="moviesList">
-  <div class="row">
-    <div class="col-12 text-right mb-3">
-      <a (click)="back()" class="a-link" title="Voltar">
-        <mat-icon mat-list-icon class="a-link__icon">reply</mat-icon> Voltar
-      </a>
-    </div>
-  </div>
+<div class="container-star-wars" *ngIf="moviesList">
+  <a (click)="back()" class="a-link" title="Voltar">
+    Voltar
+  </a>
 </div>
 
 <section
-  class="container detail-caracters"
+  class="container-star-wars detail-caracters"
   *ngIf="moviesList"
   [@fadeIn]
 >
-  <div class="row">
-    <article class="col-sm-6 col-12">
+  <div>
+    <article>
       <p>
-        <span class="font-weight-bold">Altura: </span>
+        <span class="font-bold">Altura: </span>
         {{ dataSource.height }}
       </p>
       <p>
-        <span class="font-weight-bold">Peso: </span>
+        <span class="font-bold">Peso: </span>
         {{ dataSource.mass }}
       </p>
       <p>
-        <span class="font-weight-bold">Cor do cabelo: </span>
+        <span class="font-bold">Cor do cabelo: </span>
         {{ dataSource.hair_color }}
       </p>
       <p>
-        <span class="font-weight-bold">Cor da pele: </span>
+        <span class="font-bold">Cor da pele: </span>
         {{ dataSource.skin_color }}
       </p>
     </article>
 
-    <article class="col-sm-6 col-12">
+    <article>
       <p>
-        <span class="font-weight-bold">Cor dos olhos: </span>
+        <span class="font-bold">Cor dos olhos: </span>
         {{ dataSource.eye_color }}
       </p>
       <p>
-        <span class="font-weight-bold">Ano de nascimento: </span>
+        <span class="font-bold">Ano de nascimento: </span>
         {{ dataSource.birth_year }}
       </p>
-      <p><span class="font-weight-bold">Sexo: </span>{{ dataSource.gender }}</p>
+      <p><span class="font-bold">Sexo: </span>{{ dataSource.gender }}</p>
 
       <p>
-        <span class="font-weight-bold">Criado: </span>
+        <span class="font-bold">Criado: </span>
         {{ dataSource.created | date: "dd/MM/yyyy HH:mm:ss" }}
       </p>
       <p>
-        <span class="font-weight-bold">Editado: </span>
+        <span class="font-bold">Editado: </span>
         {{ dataSource.edited | date: "dd/MM/yyyy HH:mm:ss" }}
       </p>
     </article>
@@ -61,7 +57,7 @@
 <app-movies-list
   [showMovieList]="moviesList"
   (outputMoviesResumeShow)="outputMoviesResumeShow($event)"
-  [moviesSectionTitle]='moviesSectionTitle'
+  [moviesSectionTitle]="moviesSectionTitle"
 ></app-movies-list>
 
 <app-movie-resume

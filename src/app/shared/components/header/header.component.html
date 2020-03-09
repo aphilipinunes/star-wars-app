@@ -1,10 +1,24 @@
-<header class="container">
-  <div class="text-center">
-    <a (click)='homePage()'>
-    <img
-      src="../../assets/images/Lego_Star_Wars_logo.png" class="img-fluid"
-      alt=""
-    />
+<header class="text-center header-container">
+
+<div class="header-container__menu">
+  <a routerLink="/" routerLinkActive="active" title="Filmes">
+    <img src="../../assets/images/icon-movies.png" alt="Filmes">
   </a>
-  </div>
+
+  <a routerLink="characters" routerLinkActive="active" title="Personagens">
+
+    <img src="../../assets/images/icon-characters.png" alt="Personagens">
+  </a>
+
+</div>
+
+
+
+
+    <a routerLink="/" routerLinkActive="active">
+      <img
+        src="../../assets/images/Lego_Star_Wars_logo.png" class="header-container__logo"
+        alt=""
+      />
+    </a>
 </header>

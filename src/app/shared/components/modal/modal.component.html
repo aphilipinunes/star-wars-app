@@ -1,6 +1,10 @@
-<mat-dialog-content>
-  {{message}}
-</mat-dialog-content>
-<mat-dialog-actions>
-<button mat-raised-button color="primary" mat-dialog-close tabindex="-1">{{cancelButtonText}}</button>
-</mat-dialog-actions>
+
+<div id="open-modal" class="modal-window" [ngClass]="{target: openModal}">
+  <div>
+    <a (click)='closeMOdal()' title="Close" class="modal-close">Fechar</a>
+    <h1>{{titleModal}}</h1>
+    <div>
+      {{messageModal}}
+    </div>
+  </div>
+</div>

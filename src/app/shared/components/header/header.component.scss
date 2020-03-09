@@ -1,7 +1,17 @@
 @import "src/sass/abstracts/variables";
 
-header {
-  img {
+.header-container {
+  &__logo {
     margin-top: 30px;
+  }
+  &__menu{
+    position: absolute;
+    width: 100px;
+    top: 20px;
+    left: 0px;
+    a{
+      display: block;
+      margin-top: 15px;
+    }
   }
 }

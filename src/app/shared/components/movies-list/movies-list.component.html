@@ -1,11 +1,10 @@
-<section class="container movies-list" *ngIf="showMovieList">
-  <div class="row" [@listAnimation]="moviesData.length">
+<section class="container-star-wars movies-list" *ngIf="showMovieList">
+  <div class="row" [@listAnimation]="moviesData.length" class="text-center">
 
-    <div *ngIf="moviesSectionTitle != ''" class='col-12 mt-2 mb-4 font-weight-bold'>{{moviesSectionTitle}}</div>
+    <div *ngIf="moviesSectionTitle != ''" class='movies-list__title font-bold'>{{moviesSectionTitle}}</div>
 
     <ng-template ngFor let-item [ngForOf]="moviesData" let-i="index">
-      <div class="col-md-3 col-sm-6 col-12">
-        <div class="movies-list__content">
+        <div class="movies-list__content text-center">
           <a (click)="moviesResumeContent(item)" title="About movie">
             <span class="movies-list__span">
               <img
@@ -17,10 +16,12 @@
             <span class="movies-list__span">{{ item.title }}</span>
           </a>
         </div>
-      </div>
     </ng-template>
   </div>
 </section>
 
 
 <app-loading [loadComplete]="!loadComplete"></app-loading>
+
+
+<app-modal [titleModal]='titleModal' [messageModal]='messageModal' [openModal]='openModal'></app-modal>

@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home';
+import { MoviesComponent } from './movies';
 import { ListCharactersComponent, CharactersComponent, DetailCharactersComponent } from './characters';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
+    component: MoviesComponent,
     pathMatch: 'full'
   },
   {
-    path: 'home',
-    component: HomeComponent
+    path: 'movies',
+    component: MoviesComponent
   },
 
 

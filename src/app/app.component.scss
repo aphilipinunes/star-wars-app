@@ -1,30 +1,4 @@
-@import "src/sass/abstracts/variables";
-@import "src/sass/abstracts/mixins";
 @import "src/sass/layouts/stars-background";
-@import "src/sass/components/mat-progress-spinner";
-@import "src/sass/components/mat-form-field";
-@import "src/sass/components/mat-dialog";
-@import "src/sass/components/mat-tooltip";
-@import "src/sass/components/mat-icon";
 
-.app-container {
-  position: relative;
-  z-index: 9;
-}
-
-
-.sidenav-content {
-  height: 100%;
-  overflow-y: scroll;
-
-  &__icon {
-    cursor: pointer;
-    background-color: inherit;
-    color: $yellow;
-    top: 41px;
-    left: 17px;
-    position: relative;
-  }
-}
 
 

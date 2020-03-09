@@ -1,19 +1,54 @@
 @import "src/sass/abstracts/mixins";
 @import "src/sass/abstracts/variables";
-@import "src/sass/components/mat-paginator";
-@import "src/sass/components/mat-table";
 
-.mat-table-link {
-  &:hover {
-    .mat-table-link__icon {
-      color: $yellow;
+.pagination {
+  display: inline-block;
+  padding: 10px;
+  width: 15px;
+  background-color: transparentize($red, 0.1);
+  color: transparentize($white, 0.1);
+  margin-left: 12px;
+  margin-top: 10px;
+  height: 15px;
+  margin-bottom: 15px;
+  text-align: center;
+  &.active {
+    background-color: transparentize($yellow, 0.1);
+    color: transparentize($red, 0.1);
+  }
+}
+
+.container-inputs {
+  margin-bottom: 10px;
+  &__form{
+    display: inline-block;
+  }
+  &__input{
+    float: right;
+  }
+}
+
+table {
+  margin: auto;
+  width: 100%;
+  text-align: left;
+
+  td,
+  th {
+    padding: 10px;
+  }
+
+  td {
+    background-color: transparentize($black, 0.1);
+  }
+
+  tr:nth-child(even) {
+    td {
+      background-color: transparentize($dark-gray, 0.1);
     }
   }
 
-  &__icon {
-    @include transition(0.3s);
-    height: 28px !important;
-    width: 28px !important;
-    font-size: 28px !important;
+  th {
+    background-color: transparentize($red, 0.5);
   }
 }

@@ -1,3 +1,4 @@
+@import "src/sass/abstracts/variables";
 
 .loading-indicator {
   position: fixed;
@@ -14,12 +15,32 @@
 
 /* Transparent Overlay */
 .loading-indicator:before {
-  content: '';
+  content: "";
   display: block;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.3);
+  background-color: transparentize($black, 0.9);
+}
+
+
+
+.loader {
+  border: 16px solid transparent; /* Light grey */
+  border-top: 16px solid $yellow; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

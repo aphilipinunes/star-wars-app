@@ -1,8 +1,5 @@
-import { Component, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { fadeIn, CharactersService, ModalComponent } from '../../shared';
-import { MatTableDataSource } from '@angular/material/table';
-import { PageEvent, MatPaginator } from '@angular/material/paginator';
-import { MatDialog } from '@angular/material/dialog';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -16,34 +13,32 @@ import { Router } from '@angular/router';
 })
 
 export class ListCharactersComponent implements AfterViewInit {
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  displayedColumns = ['name', 'height', 'mass', 'hair_color', 'skin_color', 'eye_color', 'birth_year', 'gender', 'details'];
   data: any = [];
   loadComplete = false;
   loadPageCharacters = false;
+  pagination = [];
+  filtersAdvanced;
+  titleModal;
+  messageModal;
+  openModal;
 
-  pageEvent: PageEvent;
-  pageIndex = [10, 20];
   pageSize = 10;
-  totalCharacters: number;
+  atualPage = 1;
+  totalPagination;
   charactersForm: FormGroup;
   titlePage = 'Personagens';
 
   constructor(
     private charactersService: CharactersService,
-    private dialog: MatDialog,
     private formBuilder: FormBuilder,
     private router: Router
   ) {
 
   }
 
-
-
   ngAfterViewInit(): void {
 
-    this.data.paginator = this.paginator;
 
     this.charactersForm = this.formBuilder.group({
       inputCaracterName: [''],
@@ -58,57 +53,54 @@ export class ListCharactersComponent implements AfterViewInit {
   get fields() { return this.charactersForm.controls; }
 
 
-  searchFilterCaracters(event?: PageEvent) {
+  searchFilterCaracters(page?) {
+
+
     this.loadComplete = false;
     let paramString = '';
-    let obj;
     let filterValue = this.fields.inputCaracterName.value.trim();
     filterValue = filterValue.toLowerCase();
 
 
-    if (event !== undefined) {
-      // paginacao
+    if (page !== undefined) {
+      // pagination
+      paramString = '?search=' + filterValue + '&page=' + page;
 
-      paramString = '?search=' + filterValue + '&page=';
-      obj = event !== undefined ? paramString + Number(event.pageIndex + 1) : paramString + 1;
+      if (this.atualPage === page) {
+        this.loadComplete = true;
+        return;
+      }
+      this.atualPage = page;
 
     } else {
       // busca por nome ou outros filtros
 
-      obj = '?search=' + filterValue;
-      this.data.paginator = this.paginator;
+      this.atualPage = (page === undefined ? 1 : page);
+      paramString = '?search=' + filterValue;
     }
 
 
-    console.log(this.paginator.pageSize);
-    // if(this.paginator.pageSize == 20){
+    this.charactersService.getCharacters(paramString).subscribe((data: any) => {
 
-
-
-    // }
-
-
-
-    this.charactersService.getCharacters(obj).subscribe((data: any) => {
-
-      this.totalCharacters = data.count;
-
-      this.data = new MatTableDataSource(data.results);
+      this.data = data.results;
       this.loadPageCharacters = true;
-      this.pageSize = this.data.length;
 
+      if (this.atualPage === 1) {
+
+        this.totalPagination = Math.ceil(data.count / (data.results.length < 10 ? data.results.length : this.pageSize));
+
+      }
+
+      this.paginationLogic();
 
 
     }, ex => {
+      this.loadPageCharacters = false;
 
-      this.dialog.open(ModalComponent, {
-        data: {
-          message: 'Erro: Por favor tente novamente mais tarde!',
-          buttonText: {
-            cancel: 'Ok'
-          }
-        },
-      });
+      this.openModal = true;
+      this.messageModal = 'Por favor tente novamente mais tarde.';
+      this.titleModal = 'Erro!';
+
 
 
     }).add(() => {
@@ -116,28 +108,63 @@ export class ListCharactersComponent implements AfterViewInit {
       this.loadComplete = true;
     });
 
-
-
-
-    return event;
-
   }
 
   detailsPage(obj) {
 
     this.charactersService.characterDetails = obj;
-
     this.router.navigate(['/characters/detail']);
-
 
   }
 
 
-  applyFilter(filterValue: string) {
+  paginationLogic() {
 
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-    this.data.filter = filterValue;
+    this.pagination = [];
+
+
+    if (this.totalPagination < 2) {
+      // SEM NECESSIDADE DE pagination
+      this.pagination = [];
+
+    } else {
+      if (this.totalPagination >= this.atualPage + 3) {
+        // pagination FINAL
+
+        if (this.atualPage >= 5) {
+          this.pagination = [this.atualPage - 2, this.atualPage - 1, this.atualPage, this.atualPage + 1, this.atualPage + 2];
+        } else {
+          if (this.totalPagination >= 5) {
+            this.pagination = Array.from({ length: 5 }, (v, k) => k + 1);
+          } else {
+
+            this.pagination = Array.from({ length: this.totalPagination }, (v, k) => k + 1);
+          }
+
+        }
+
+      } else {
+
+        // pagination INICIAL
+        if (this.atualPage < 5) {
+          if (this.totalPagination <= 5) {
+            this.pagination = Array.from({ length: this.totalPagination }, (v, k) => k + 1);
+          } else {
+            this.pagination = [1, 2, 3, 4, 5];
+          }
+
+        } else {
+          this.pagination = [
+            this.totalPagination - 4,
+             this.totalPagination - 3,
+             this.totalPagination - 2,
+             this.totalPagination - 1,
+             this.totalPagination
+          ];
+
+        }
+      }
+    }
   }
 
 }

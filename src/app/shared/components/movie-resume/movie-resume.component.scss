@@ -1,3 +1,16 @@
+.movie-resume {
+  article {
+    display: inline-block;
+  }
+
+  &__img {
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+
+}
+
 @media only screen and (max-width: 767px) {
   .movie-resume {
     &__title {

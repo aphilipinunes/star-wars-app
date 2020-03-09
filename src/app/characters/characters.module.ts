@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ListCharactersComponent, CharactersComponent, DetailCharactersComponent } from './';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
+import { FilterPipe } from '../shared';
 
 
 
@@ -10,7 +11,8 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [
     ListCharactersComponent,
     CharactersComponent,
-    DetailCharactersComponent
+    DetailCharactersComponent,
+    FilterPipe
   ],
   imports: [
     CommonModule,

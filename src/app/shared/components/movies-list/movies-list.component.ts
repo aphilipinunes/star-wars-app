@@ -1,8 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { listAnimation, fadeIn } from '../../utils';
 import { HomeService } from '../../services';
-import { ModalComponent } from '../modal';
 
 @Component({
   selector: 'app-movies-list',
@@ -16,19 +14,21 @@ import { ModalComponent } from '../modal';
 export class MoviesListComponent implements OnInit {
 
   constructor(
-    private homeService: HomeService,
-    private dialog: MatDialog
+    private homeService: HomeService
     ) { }
 
   loadComplete: boolean;
   moviesData = [];
+  titleModal;
+  messageModal;
+  openModal;
+
   @Input() showMovieList = true;
   @Output() outputMoviesResumeShow = new EventEmitter<any>();
   @Input() moviesSectionTitle = '';
 
   ngOnInit(): void {
     this.moviesApi();
-
   }
 
 
@@ -39,15 +39,10 @@ export class MoviesListComponent implements OnInit {
       this.moviesData = data.results;
       this.showMovieList = true;
     }, ex => {
-      console.log(ex);
-      this.dialog.open(ModalComponent, {
-        data: {
-          message: 'Erro na api: Por favor tente novamente mais tarde!',
-          buttonText: {
-            cancel: 'Ok'
-          }
-        },
-      });
+
+      this.openModal = true;
+      this.messageModal = 'Por favor tente novamente mais tarde.';
+      this.titleModal = 'Erro!';
 
 
     }).add(() => {

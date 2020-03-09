@@ -12,11 +12,4 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  constructor(private router: Router) { }
-
-
-  homePage() {
-    this.router.navigate(['/']);
-  }
-
 }

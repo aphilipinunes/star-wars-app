@@ -1,40 +1,6 @@
-<mat-sidenav-container fullscreen class="app-container">
-  <mat-sidenav
-    #sidenav
-    mode="side"
-    class="example-sidenav"
-    opened="false"
-    [@fadeIn]
-  >
-    <mat-nav-list>
+<app-header></app-header>
 
-      <mat-list-item routerLink="/" routerLinkActive="active" title="Filmes">
-        <mat-icon mat-list-icon>movie</mat-icon>
-      </mat-list-item>
-
-
-      <mat-list-item routerLink="characters" routerLinkActive="active" title="Personagens">
-        <mat-icon mat-list-icon>people</mat-icon>
-      </mat-list-item>
-
-
-    </mat-nav-list>
-  </mat-sidenav>
-
-  <div class="sidenav-content" [@fadeIn]>
-    <!-- <router-outlet></router-outlet> -->
-    <mat-icon
-      (click)="sidenav.toggle()"
-      class="sidenav-menu sidenav-content__icon sidenav-icon"
-    >
-      menu
-    </mat-icon>
-
-    <app-header></app-header>
-
-    <router-outlet></router-outlet>
-  </div>
-</mat-sidenav-container>
+<router-outlet></router-outlet>
 
 <div id="stars"></div>
 <div id="stars2"></div>
