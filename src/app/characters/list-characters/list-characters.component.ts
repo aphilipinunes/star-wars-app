@@ -80,7 +80,7 @@ export class ListCharactersComponent implements AfterViewInit {
     }
 
 
-    console.log(this.paginator.pageSize)
+    console.log(this.paginator.pageSize);
     // if(this.paginator.pageSize == 20){
 
 

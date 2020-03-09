@@ -16,7 +16,7 @@ export class DetailCharactersComponent implements OnInit {
   moviesList = true;
   movieObjectList = false;
   titlePage;
-  moviesSectionTitle = 'Filmes que participou'
+  moviesSectionTitle = 'Filmes que participou';
 
   constructor(
     private charactersService: CharactersService,
