@@ -18,7 +18,7 @@ export class ListCharactersComponent implements AfterViewInit {
   loadComplete = false;
   loadPageCharacters = false;
   pagination = [];
-  filtersAdvanced;
+  inputFilters;
   titleModal;
   messageModal;
   openModal;
@@ -74,7 +74,7 @@ export class ListCharactersComponent implements AfterViewInit {
 
     } else {
       // busca por nome ou outros filtros
-
+      this.inputFilters = '';
       this.atualPage = (page === undefined ? 1 : page);
       paramString = '?search=' + filterValue;
     }
@@ -156,15 +156,28 @@ export class ListCharactersComponent implements AfterViewInit {
         } else {
           this.pagination = [
             this.totalPagination - 4,
-             this.totalPagination - 3,
-             this.totalPagination - 2,
-             this.totalPagination - 1,
-             this.totalPagination
+            this.totalPagination - 3,
+            this.totalPagination - 2,
+            this.totalPagination - 1,
+            this.totalPagination
           ];
 
         }
       }
     }
+  }
+
+
+
+  onChange(newValue) {
+    if (newValue.length > 0) {
+      this.pagination = [];
+    } else {
+      this.paginationLogic();
+    }
+    this.inputFilters = newValue;
+
+
   }
 
 }

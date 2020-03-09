@@ -20,7 +20,8 @@
       <input
         matInput
         placeholder="Filtro avançado (cabelos, olhos, nascimento e etc)"
-        [(ngModel)]="filtersAdvanced"
+        [(ngModel)]="inputFilters" (ngModelChange)="onChange($event)" option
+        [ngModelOptions]="{updateOn: 'blur'}"
         autocomplete="off"
         class=""
       />
@@ -60,7 +61,7 @@
       </th>
     </tr>
 
-    <tr *ngFor="let element of data | filter:filtersAdvanced:['name', 'height', 'mass', 'hair_color', 'skin_color', 'eye_color', 'birth_year', 'gender']; let i = index">
+    <tr *ngFor="let element of data | filter:inputFilters:['name', 'height', 'mass', 'hair_color', 'skin_color', 'eye_color', 'birth_year', 'gender']; let i = index">
       <td>
         {{ element.name }}
       </td>
