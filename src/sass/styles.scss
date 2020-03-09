@@ -9,8 +9,12 @@ body {
 }
 
 html {
-  overflow: hidden;
   color: $white;
+  background-color: transparent;
+}
+
+.general-content{
+  overflow: scroll;
 }
 
 .font-bold {
@@ -43,7 +47,7 @@ button {
 }
 
 body {
-  background: radial-gradient(ellipse at bottom, #09131f 0%, #000000 100%);
+  background: $dark-blue;
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   font-size: 14px;
@@ -94,6 +98,8 @@ p {
 .container-star-wars {
   width: 90%;
   margin: auto;
+  position:relative;
+  z-index: 1;
 }
 
 .float-left {

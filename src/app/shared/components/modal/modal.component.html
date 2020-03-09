@@ -1,10 +1,15 @@
-
-<div id="open-modal" class="modal-window" [ngClass]="{target: openModal}">
-  <div>
-    <a (click)='closeMOdal()' title="Close" class="modal-close">Fechar</a>
-    <h1>{{titleModal}}</h1>
+<div
+  id="open-modal"
+  class="modal-window"
+  [ngClass]="{'modal-window--open': openModal}"
+>
+  <div class="modal-window__content">
+    <a (click)="closeMOdal()" title="Fechar" class="modal-window__close"
+      >Fechar</a
+    >
+    <div class="modal-window__title">{{ titleModal }}</div>
     <div>
-      {{messageModal}}
+      {{ messageModal }}
     </div>
   </div>
 </div>

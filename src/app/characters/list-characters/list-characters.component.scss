@@ -32,14 +32,17 @@ table {
   margin: auto;
   width: 100%;
   text-align: left;
+  background-color: transparentize($black, 0.1);
 
   td,
   th {
     padding: 10px;
-  }
+    &.hide-sm{
 
-  td {
-    background-color: transparentize($black, 0.1);
+      @media only screen and (max-width: 720px) {
+        display: none;
+      }
+    }
   }
 
   tr:nth-child(even) {
@@ -50,5 +53,9 @@ table {
 
   th {
     background-color: transparentize($red, 0.5);
+  }
+
+  td {
+    background-color: transparentize($black, 0.1);
   }
 }

@@ -9,4 +9,10 @@
     @include transform-origin(50% 100%);
     @include transform(perspective(300px) rotateX(42deg));
   }
+
+  article{
+    float: left;
+    width: 50%;
+    margin-bottom: 20px;
+  }
 }

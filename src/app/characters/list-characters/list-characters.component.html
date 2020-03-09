@@ -21,7 +21,7 @@
         matInput
         placeholder="Filtro avançado (cabelos, olhos, nascimento e etc)"
         [(ngModel)]="inputFilters" (ngModelChange)="onChange($event)" option
-        [ngModelOptions]="{updateOn: 'blur'}"
+        [ngModelOptions]="{updateOn: 'change blur'}"
         autocomplete="off"
         class=""
       />
@@ -39,16 +39,16 @@
       <th>
         Peso
       </th>
-      <th>
+      <th class="hide-sm">
         Cor do cabelo
       </th>
-      <th>
+      <th class="hide-sm">
         Cor da pele
       </th>
       <th>
         Cor dos olhos
       </th>
-      <th>
+      <th class="hide-sm">
         Ano nascimento
       </th>
 
@@ -71,16 +71,16 @@
       <td>
         {{ element.mass }}
       </td>
-      <td>
+      <td class="hide-sm">
         {{ element.hair_color }}
       </td>
-      <td>
+      <td class="hide-sm">
         {{ element.skin_color }}
       </td>
       <td>
         {{ element.eye_color }}
       </td>
-      <td>
+      <td class="hide-sm">
         {{ element.birth_year }}
       </td>
       <td>

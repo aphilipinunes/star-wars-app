@@ -1,8 +1,8 @@
 <section class="movie-resume container-star-wars" *ngIf="!showMovieResume" [@fadeIn]>
-    <article>
+    <article class="movie-resume__article">
       <img src="{{ movieObjectList.image }}" class="movie-resume__img" alt='Star Wars movie' />
 
-      <h2>{{ movieObjectList.title }}</h2>
+      <h2 class="movie-resume__title">{{ movieObjectList.title }}</h2>
       <p>{{ movieObjectList.sinopse }}</p>
 
       <p class="font-bold">Producer: {{ movieObjectList.producer }}</p>

@@ -1,20 +1,29 @@
 .movie-resume {
-  article {
+  &__article {
     display: inline-block;
+  }
+
+  &__title {
+    @media only screen and (max-width: 535px) {
+      margin-top: 0;
+    }
   }
 
   &__img {
     float: left;
     margin-right: 20px;
     margin-bottom: 20px;
-  }
+    @media only screen and (max-width: 767px) {
+      width: 250px;
+    }
 
-}
-
-@media only screen and (max-width: 767px) {
-  .movie-resume {
-    &__title {
-      margin-top: 30px;
+    @media only screen and (max-width: 535px) {
+      width: 160px;
+      float: none;
     }
   }
 }
+
+// @media only screen and (max-width: 530px) {
+//   width: 240px;
+// }

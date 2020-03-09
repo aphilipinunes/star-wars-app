@@ -27,8 +27,9 @@ export class MoviesListComponent implements OnInit {
   @Output() outputMoviesResumeShow = new EventEmitter<any>();
   @Input() moviesSectionTitle = '';
 
+
   ngOnInit(): void {
-    this.moviesApi();
+     this.moviesApi();
   }
 
 

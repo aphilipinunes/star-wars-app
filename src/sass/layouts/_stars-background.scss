@@ -1,5 +1,6 @@
 
 #stars {
+  position: fixed;
   width: 1px;
   height: 1px;
   background: transparent;
@@ -548,26 +549,6 @@
     1496px 1165px #fff, 1610px 1684px #fff, 971px 485px #fff, 1401px 1490px #fff,
     1632px 197px #fff, 727px 549px #fff, 1641px 1211px #fff, 519px 1482px #fff,
     1324px 936px #fff, 1104px 838px #fff;
-}
-
-#title {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  color: #fff;
-  text-align: center;
-  font-family: "lato", sans-serif;
-  font-weight: 300;
-  font-size: 50px;
-  letter-spacing: 10px;
-  margin-top: -60px;
-  padding-left: 10px;
-}
-#title span {
-  background: -webkit-linear-gradient(white, #38495a);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 @keyframes animStar {
