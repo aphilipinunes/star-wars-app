@@ -67,4 +67,17 @@ webpack                            4.41.2
 
 
 
+## Navegadores testados
+Opera
+
+Chrome
+
+Firefox
+
+Edge
+
+Internet explorer
+
+
+
 
