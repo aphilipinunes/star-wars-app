@@ -5,7 +5,7 @@ import { environment } from '../../../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class HomeService {
+export class MoviesService {
   api = environment.api;
   characters;
 

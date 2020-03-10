@@ -16,12 +16,11 @@
       />
     </form>
 
-    <div class="text-right container-inputs__input">
+    <div class="container-inputs__input">
       <input
         matInput
         placeholder="Filtro avançado (cabelos, olhos, nascimento e etc)"
-        [(ngModel)]="inputFilters" (ngModelChange)="onChange($event)" option
-        [ngModelOptions]="{updateOn: 'change blur'}"
+        [(ngModel)]="inputFilters" (ngModelChange)="onChange($event)"
         autocomplete="off"
         class=""
       />
@@ -93,15 +92,8 @@
   </table>
 </section>
 
-<div class="container-star-wars" *ngIf="loadPageCharacters">
-  <div class="text-center">
-    <ng-template ngFor let-item [ngForOf]="pagination" let-i="index">
-      <a class="pagination" (click)="searchFilterCaracters(pagination[i])" [class.active]="atualPage == pagination[i]" [class.disabled]='atualPage == pagination[i]'>
-        {{ pagination[i] }}</a
-      >
-    </ng-template>
-  </div>
-</div>
+<app-pagination [atualPage]='atualPage' [totalPagination]='totalPagination' [pageSize]='pageSize' [pagination]='pagination' (outputPagination)='searchFilterCaracters($event)'></app-pagination>
+
 
 <app-loading [loadComplete]="!loadComplete"></app-loading>
 

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { listAnimation, fadeIn } from '../../utils';
-import { HomeService } from '../../services';
+import { MoviesService } from '../../services';
 
 @Component({
   selector: 'app-movies-list',
@@ -14,7 +14,7 @@ import { HomeService } from '../../services';
 export class MoviesListComponent implements OnInit {
 
   constructor(
-    private homeService: HomeService
+    private moviesService: MoviesService
     ) { }
 
   loadComplete: boolean;
@@ -36,7 +36,7 @@ export class MoviesListComponent implements OnInit {
   moviesApi() {
     this.loadComplete = false;
 
-    this.homeService.getMovies().subscribe((data: any) => {
+    this.moviesService.getMovies().subscribe((data: any) => {
       this.moviesData = data.results;
       this.showMovieList = true;
     }, ex => {

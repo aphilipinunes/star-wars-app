@@ -1,5 +1,5 @@
-import { Component, AfterViewInit } from '@angular/core';
-import { fadeIn, CharactersService, ModalComponent } from '../../shared';
+import { Component, ViewChild, OnInit } from '@angular/core';
+import { fadeIn, CharactersService, PaginationComponent } from '../../shared';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -9,23 +9,29 @@ import { Router } from '@angular/router';
   styleUrls: ['./list-characters.component.scss'],
   animations: [
     fadeIn
-  ]
+  ],
 })
 
-export class ListCharactersComponent implements AfterViewInit {
+export class ListCharactersComponent implements OnInit {
+
+  @ViewChild(PaginationComponent, {static: true}) pChild: PaginationComponent;
+
 
   data: any = [];
   loadComplete = false;
   loadPageCharacters = false;
-  pagination = [];
   inputFilters;
   titleModal;
   messageModal;
   openModal;
 
-  pageSize = 10;
+
   atualPage = 1;
   totalPagination;
+  pageSize = 10;
+  pagination = [];
+
+
   charactersForm: FormGroup;
   titlePage = 'Personagens';
 
@@ -37,7 +43,7 @@ export class ListCharactersComponent implements AfterViewInit {
 
   }
 
-  ngAfterViewInit(): void {
+  ngOnInit(): void {
 
 
     this.charactersForm = this.formBuilder.group({
@@ -53,7 +59,7 @@ export class ListCharactersComponent implements AfterViewInit {
   get fields() { return this.charactersForm.controls; }
 
 
-  searchFilterCaracters(page?) {
+  async searchFilterCaracters(page?) {
 
 
     this.loadComplete = false;
@@ -80,19 +86,14 @@ export class ListCharactersComponent implements AfterViewInit {
     }
 
 
-    this.charactersService.getCharacters(paramString).subscribe((data: any) => {
+    this.charactersService.getCharacters(paramString).subscribe(async (data: any) => {
 
       this.data = data.results;
       this.loadPageCharacters = true;
 
       if (this.atualPage === 1) {
-
         this.totalPagination = Math.ceil(data.count / (data.results.length < 10 ? data.results.length : this.pageSize));
-
       }
-
-      this.paginationLogic();
-
 
     }, ex => {
       this.loadPageCharacters = false;
@@ -104,81 +105,31 @@ export class ListCharactersComponent implements AfterViewInit {
 
 
     }).add(() => {
-
       this.loadComplete = true;
     });
 
+    setTimeout(() => {
+      this.pChild.paginationLogic();
+    }, 1500);
   }
 
   detailsPage(obj) {
-
     this.charactersService.characterDetails = obj;
     this.router.navigate(['/characters/detail']);
-
   }
-
-
-  paginationLogic() {
-
-    this.pagination = [];
-
-
-    if (this.totalPagination < 2) {
-      // SEM NECESSIDADE DE pagination
-      this.pagination = [];
-
-    } else {
-      if (this.totalPagination >= this.atualPage + 3) {
-        // pagination FINAL
-
-        if (this.atualPage >= 5) {
-          this.pagination = [this.atualPage - 2, this.atualPage - 1, this.atualPage, this.atualPage + 1, this.atualPage + 2];
-        } else {
-          if (this.totalPagination >= 5) {
-            this.pagination = Array.from({ length: 5 }, (v, k) => k + 1);
-          } else {
-
-            this.pagination = Array.from({ length: this.totalPagination }, (v, k) => k + 1);
-          }
-
-        }
-
-      } else {
-
-        // pagination INICIAL
-        if (this.atualPage < 5) {
-          if (this.totalPagination <= 5) {
-            this.pagination = Array.from({ length: this.totalPagination }, (v, k) => k + 1);
-          } else {
-            this.pagination = [1, 2, 3, 4, 5];
-          }
-
-        } else {
-          this.pagination = [
-            this.totalPagination - 4,
-            this.totalPagination - 3,
-            this.totalPagination - 2,
-            this.totalPagination - 1,
-            this.totalPagination
-          ];
-
-        }
-      }
-    }
-  }
-
-
 
   onChange(newValue) {
     if (newValue.length > 0) {
       this.pagination = [];
+
     } else {
-      this.paginationLogic();
+      console.log('asd');
+      this.pChild.paginationLogic();
     }
     this.inputFilters = newValue;
 
-
   }
+
 
 }
 

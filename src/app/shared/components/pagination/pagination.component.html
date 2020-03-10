@@ -1,0 +1,15 @@
+<div class="container-star-wars">
+  <div class="text-center">
+    <ng-template ngFor let-item [ngForOf]="pagination" let-i="index">
+      <a
+        class="pagination"
+        (click)="searchFilterCaracters(pagination[i])"
+        [class.active]="atualPage == pagination[i]"
+        [class.disabled]="atualPage == pagination[i]"
+      >
+        {{ pagination[i] }}
+      </a>
+    </ng-template>
+  </div>
+</div>
+

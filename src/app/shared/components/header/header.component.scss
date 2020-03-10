@@ -3,6 +3,8 @@
 .header-container {
   &__logo {
     margin-top: 30px;
+    position: relative;
+    z-index: 1;
 
     @media only screen and (max-width: 530px) {
       width: 240px;

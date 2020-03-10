@@ -7,7 +7,8 @@ import {
   MovieResumeComponent,
   MoviesListComponent,
   ModalComponent,
-  TitleComponent
+  TitleComponent,
+  PaginationComponent
 } from './';
 
 import { RouterModule } from '@angular/router';
@@ -20,7 +21,8 @@ import { RouterModule } from '@angular/router';
     ModalComponent,
     MovieResumeComponent,
     MoviesListComponent,
-    TitleComponent
+    TitleComponent,
+    PaginationComponent
   ],
   imports: [
     CommonModule,
@@ -35,6 +37,7 @@ import { RouterModule } from '@angular/router';
     MoviesListComponent,
     LoadingComponent,
     ModalComponent,
+    PaginationComponent,
     FormsModule,
     ReactiveFormsModule
   ]
