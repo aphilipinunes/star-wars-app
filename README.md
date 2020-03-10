@@ -30,7 +30,7 @@ npm start
 
 
 
-# Versões Usadas (Caso tenha algum erro de instalação, tente fazer update destes pacotes)
+## Versões Usadas (Caso tenha algum erro de instalação, tente fazer update destes pacotes)
 Angular CLI: 9.0.5
 Node: 12.15.0 
 
