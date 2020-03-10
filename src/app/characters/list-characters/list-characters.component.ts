@@ -105,12 +105,12 @@ export class ListCharactersComponent implements OnInit {
 
 
     }).add(() => {
-      this.loadComplete = true;
+      setTimeout(() => {
+        this.pChild.paginationLogic();
+        this.loadComplete = true;
+      }, 1000);
     });
 
-    setTimeout(() => {
-      this.pChild.paginationLogic();
-    }, 1500);
   }
 
   detailsPage(obj) {
