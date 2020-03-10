@@ -20,7 +20,6 @@ export class PaginationComponent implements OnInit {
 
 
   paginationLogic() {
-    console.log(1);
     this.pagination = [];
 
     if (this.totalPagination < 2) {

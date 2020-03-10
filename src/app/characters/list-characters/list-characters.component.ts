@@ -123,7 +123,6 @@ export class ListCharactersComponent implements OnInit {
       this.pagination = [];
 
     } else {
-      console.log('asd');
       this.pChild.paginationLogic();
     }
     this.inputFilters = newValue;
