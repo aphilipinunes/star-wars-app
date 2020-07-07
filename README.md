@@ -9,7 +9,7 @@ Em alguns momentos dentro dos próprios componentes (componentes scss nas pastas
 
 ## Projeto
 
-Esse projeto foi feito para o consumo de api Star Wars, filmes, personagens e detalhes dos personagens.
+Esse projeto foi feito para o consumo de api Star Wars, filmes, personagens e detalhes dos personagens, sem nenhum framework (Material, Bootstrap, etc).
 
 
 ## Development server
