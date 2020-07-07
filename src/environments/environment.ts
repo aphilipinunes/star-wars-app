@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api: 'https://swapi.co/api/'
+  api: 'https://swapi.dev/api/'
 };
 
 /*

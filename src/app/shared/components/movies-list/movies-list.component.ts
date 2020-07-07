@@ -15,7 +15,7 @@ export class MoviesListComponent implements OnInit {
 
   constructor(
     private moviesService: MoviesService
-    ) { }
+  ) { }
 
   loadComplete: boolean;
   moviesData = [];
@@ -29,7 +29,7 @@ export class MoviesListComponent implements OnInit {
 
 
   ngOnInit(): void {
-     this.moviesApi();
+    this.moviesApi();
   }
 
 
@@ -45,7 +45,6 @@ export class MoviesListComponent implements OnInit {
       this.messageModal = 'Por favor tente novamente mais tarde.';
       this.titleModal = 'Erro!';
 
-
     }).add(() => {
       this.loadComplete = true;
     });
@@ -55,7 +54,7 @@ export class MoviesListComponent implements OnInit {
 
   moviesResumeContent(result) {
     const arrayList = {
-      'image': '../../assets/images/' + result.episode_id + '.jpg',
+      'image': 'assets/images/' + result.episode_id + '.jpg',
       'sinopse': result.opening_crawl,
       'title': result.title,
       'producer': result.producer,

@@ -1,27 +1,30 @@
 <section class="container-star-wars movies-list" *ngIf="showMovieList">
   <div class="row" [@listAnimation]="moviesData.length" class="text-center">
-
-    <div *ngIf="moviesSectionTitle != ''" class='movies-list__title font-bold'>{{moviesSectionTitle}}</div>
+    <div *ngIf="moviesSectionTitle != ''" class="movies-list__title font-bold">
+      {{ moviesSectionTitle }}
+    </div>
 
     <ng-template ngFor let-item [ngForOf]="moviesData" let-i="index">
-        <div class="movies-list__content text-center">
-          <a (click)="moviesResumeContent(item)" title="About movie">
-            <span class="movies-list__span">
-              <img
-                class="movies-list__img"
-                src="../../assets/images/{{ item.episode_id }}.jpg"
-                alt='Star Wars movie {{ item.episode_id }}'
-              />
-            </span>
-            <span class="movies-list__span">{{ item.title }}</span>
-          </a>
-        </div>
+      <div class="movies-list__content text-center">
+        <a (click)="moviesResumeContent(item)" title="About movie">
+          <span class="movies-list__span">
+            <img
+              class="movies-list__img"
+              src="assets/images/{{ item.episode_id }}.jpg"
+              alt="Star Wars movie {{ item.episode_id }}"
+            />
+          </span>
+          <span class="movies-list__span">{{ item.title }}</span>
+        </a>
+      </div>
     </ng-template>
   </div>
 </section>
 
-
 <app-loading [loadComplete]="!loadComplete"></app-loading>
 
-
-<app-modal [titleModal]='titleModal' [messageModal]='messageModal' [openModal]='openModal'></app-modal>
+<app-modal
+  [titleModal]="titleModal"
+  [messageModal]="messageModal"
+  [openModal]="openModal"
+></app-modal>
